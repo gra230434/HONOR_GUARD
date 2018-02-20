@@ -1,0 +1,69 @@
+<header class="main">
+  <h1>台北市立大同儀隊 第八屆表演</h1>
+</header>
+
+<div id="videoarea" class="videolist">
+    <div id="final">
+        <h2>大成 儀發不可收拾</h2>
+    </div>
+    <h4>01</h4>
+    <div id="v-con" class="video-container video-container-m">
+        <video width="100%" height="100%" controls preload="metadata">
+            <source src="/videodata/098_8th/final/01.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <hr class="major">
+    <h4>02</h4>
+    <div id="v-con" class="video-container video-container-m">
+        <video width="100%" height="100%" controls preload="none" poster="/images/screen_cover.jpg">
+            <source src="/videodata/098_8th/final/02.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <hr class="major">
+    <h4>03</h4>
+    <div id="v-con" class="video-container video-container-m">
+        <video width="100%" height="100%" controls preload="none" poster="/images/screen_cover.jpg">
+            <source src="/videodata/098_8th/final/03.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <hr class="major">
+    <h4>04</h4>
+    <div id="v-con" class="video-container video-container-m">
+        <video width="100%" height="100%" controls preload="none" poster="/images/screen_cover.jpg">
+            <source src="/videodata/098_8th/final/04.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <hr class="major">
+    <h4>05</h4>
+    <div id="v-con" class="video-container video-container-m">
+        <video width="100%" height="100%" controls preload="none" poster="/images/screen_cover.jpg">
+            <source src="/videodata/098_8th/final/05.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<script>
+      function setvideowidth() {
+        if( $( '#mainpage' ).width() <= 640 ){
+          $( ".video-container" ).each( function(){
+            $(this).removeClass( "video-container-m" ).addClass( "video-container-s" );
+          });
+        }
+        else if( $( '#mainpage' ).width() <= 1280 && $( '#mainpage' ).width() > 853 ){
+          $( ".video-container" ).each( function(){
+            $(this).removeClass( "video-container-m" ).addClass( "video-container-l" );
+          });
+        }
+        else if( $( '#mainpage' ).width() > 1280 ){
+          $( ".video-container" ).each( function(){
+            $(this).removeClass( "video-container-m" ).addClass( "video-container-xl" );
+          });
+        }
+      }
+      setvideowidth()
+</script>
