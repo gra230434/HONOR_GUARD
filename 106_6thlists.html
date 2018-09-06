@@ -1,5 +1,5 @@
 <header class="main">
-  <h1>台北市立大同儀隊 第十五屆表演</h1>
+  <h1>台北市立大同儀隊 第十六屆表演</h1>
 </header>
 
 <div id="videoarea" class="videolist">
@@ -7,8 +7,8 @@
         <h2>六字 迎新</h2>
     </div>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'v-con')">Web</button>
-        <button class="tablinks" onclick="openCity(event, 'Paris')">YouTube</button>
+        <button class="tablinks" onclick="openVideo(event, 'v-con')" id="defaultOpen">Web</button>
+        <button class="tablinks" onclick="openVideo(event, 'Paris')">YouTube</button>
         <!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">vime</button> -->
     </div>
     <div id="v-con" class="video-container video-container-m">
@@ -21,3 +21,37 @@
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/E_GeAIvZ4qI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
+
+<script>
+    function setvideowidth() {
+        if( $( '#mainpage' ).width() <= 640 ){
+            $( ".video-container" ).each( function(){
+                $(this).removeClass( "video-container-m" ).addClass( "video-container-s" );
+            });
+        } else if( $( '#mainpage' ).width() <= 1280 && $( '#mainpage' ).width() > 853 ){
+            $( ".video-container" ).each( function(){
+                $(this).removeClass( "video-container-m" ).addClass( "video-container-l" );
+            });
+        } else if( $( '#mainpage' ).width() > 1280 ){
+            $( ".video-container" ).each( function(){
+                $(this).removeClass( "video-container-m" ).addClass( "video-container-xl" );
+            });
+        }
+    }
+    setvideowidth()
+
+    function openVideo(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
