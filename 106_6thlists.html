@@ -1,8 +1,3 @@
-<script>
-  $( function() {
-    $( "#tabs" ).tabs();
-  } );
- </script>
 <header class="main">
   <h1>台北市立大同儀隊 第十六屆表演</h1>
 </header>
@@ -11,34 +6,24 @@
   <div id="WelcomeParty">
     <h2>六字 迎新</h2>
   </div>
-  <div id="tabs">
+  <div id="WelcomeParty_tabs">
     <ul>
-      <li><a href="#tabs-1">Nunc tincidunt</a></li>
-      <li><a href="#tabs-2">Proin dolor</a></li>
+      <li @click="toggle(index ,tab.view)" v-for="(tab,index) in tabs" :class="{active:active===index}">
+        {{tab.type}}
+      </li>
     </ul>
-    <div id="tabs-1">
-      <video width="100%" height="100%" controls preload="metadata">
-        <source src="/video/106_6th/WelcomeParty.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div id="tabs-2">
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/E_GeAIvZ4qI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-  </div>
-  <div class="tab">
-    <button class="tablinks" onclick="openVideo(event, 'v-con')" id="defaultOpen">Web</button>
-    <button class="tablinks" onclick="openVideo(event, 'youtube')">YouTube</button>
-    <!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">vime</button> -->
-  </div>
-  <div id="v-con" class="video-container video-container-m tabcontent">
-    <video width="100%" height="100%" controls preload="metadata">
-      <source src="/video/106_6th/WelcomeParty.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <div id="youtube" class="video-container video-container-m tabcontent">
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/E_GeAIvZ4qI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <component :is="currentView"></component>
+    <tabs>
+      <tab name="web" :selected="true">
+        <video width="100%" height="100%" controls preload="metadata">
+          <source src="/video/106_6th/WelcomeParty.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </tab>
+      <tab name="youtube">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/E_GeAIvZ4qI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </tab>
+    </tabs>
   </div>
 </div>
 
@@ -59,4 +44,35 @@
     }
   }
   setvideowidth()
+</script>
+<script>
+Vue.component('web', {
+  template: '<video width="100%" height="100%" controls preload="metadata"><source src="/video/106_6th/WelcomeParty.mp4" type="video/mp4">Your browser does not support the video tag.</video>'
+})
+Vue.component('youtube', {
+  template: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/E_GeAIvZ4qI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+})
+new Vue({
+  el: "#WelcomeParty_tabs",
+  data: {
+  active: 0,
+  currentView: 'web',
+  tabs: [
+    {
+      type: 'tab1',
+      view: 'web'
+    },
+    {
+      type: 'tab2',
+      view: 'youtube'
+    }
+  ]
+},
+methods: {
+  toggle(i, v){
+  this.active = i
+  this.currentView = v
+  }
+}
+})
 </script>
